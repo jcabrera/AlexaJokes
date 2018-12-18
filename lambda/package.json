@@ -1,12 +1,11 @@
 {
-  "name": "alexa-jokes-lambda-dad",
+  "name": "alexa-jokes-lambda",
   "version": "1.0.0",
-  "description": "Dad's Lambda for the Alexa joke skill",
+  "description": "A Lambda for the Alexa Jokes skill",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Aaron Mulder",
   "dependencies": {
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0"
