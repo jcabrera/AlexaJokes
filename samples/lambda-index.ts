@@ -24,21 +24,6 @@ import {
     },
   };
   
-  const HelloWorldIntentHandler: RequestHandler = {
-    canHandle(handlerInput: HandlerInput): boolean {
-      return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-        && handlerInput.requestEnvelope.request.intent.name === 'TellJokeIntent';
-    },
-    handle(handlerInput: HandlerInput): Response {
-      const speechText = 'This is where I should tell a joke';
-  
-      return handlerInput.responseBuilder
-        .speak(speechText)
-        .withSimpleCard('Alexa Jokes', speechText)
-        .getResponse();
-    },
-  };
-  
   const HelpIntentHandler: RequestHandler = {
     canHandle(handlerInput: HandlerInput): boolean {
       return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -62,7 +47,7 @@ import {
           || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
     },
     handle(handlerInput: HandlerInput): Response {
-      const speechText = 'Goodbye!';
+      const speechText = "Goodbye!  I'll tell you more jokes another time.";
   
       return handlerInput.responseBuilder
         .speak(speechText)
@@ -90,8 +75,8 @@ import {
       console.log(`Error handled: ${error.message}`);
   
       return handlerInput.responseBuilder
-        .speak('Sorry, I can\'t understand the command. Please say again.')
-        .reprompt('Sorry, I can\'t understand the command. Please say again.')
+        .speak('Sorry, I think I missed something.  Can you ask me again?')
+        .reprompt('Sorry, I think I missed something.  Can you ask me again?')
         .getResponse();
     },
   };
@@ -99,7 +84,6 @@ import {
   exports.handler = SkillBuilders.custom()
     .addRequestHandlers(
       LaunchRequestHandler,
-      HelloWorldIntentHandler,
       HelpIntentHandler,
       CancelAndStopIntentHandler,
       SessionEndedRequestHandler,
