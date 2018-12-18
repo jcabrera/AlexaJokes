@@ -8,7 +8,7 @@
 1. First, create an Amazon developer account (for reasons unknown, this is separate from your AWS account that we created before):
     1. In your browser, go to http://developer.amazon.com/
     1. Click `Sign In` on the top right
-    1. If you already have a regular Amazon account, try signing in with that.  If you don't, click `Create your Amazon Developer account`
+    1. If you already have a regular Amazon account, try signing in with that.  If you have an Echo or other Alexa device, the best idea is to use the Amazon account that already "owns" that device.  But if that's not possible or appropriate, you can use another one.  If you don't have an Amazon account at all, click `Create your Amazon Developer account`
     1. For new accounts, enter your name, e-mail address, and a good password.  For convenience, it may be best to use the same e-mail address you used for your AWS account (including any dots in the name).  It is not required, though.  Then hit `Continue`.
     1. *Since I already have an account, I need to document this when one of you goes through it.*  Complete the rest of the Amazon Developer account setup, and if you're not signed in when that's done, sign in like above
 1. Next, create an Alexa skill:
@@ -53,11 +53,27 @@
     1. If you have audio on your computer (speakers or headphones, with the volume on), you should hear Alexa say "Hi there.  Ask me to tell a joke".  If not, don't worry, you can still see the response.
     1. On the right side of the screen, you should see a blue bar that says `Hi there.  Ask me to tell a joke!`  That's from your Lambda function!  Below that, there are large text areas with "JSON Input" and "JSON Output" for this request.  Those are the message Alexa sent to your Lambda, and the response your Lambda sent back.
         * This is a great example of the power of using other people's libraries in your code.  Your Lambda function does not have any code to create all that text in the response.  It only has entries like `speak('Hi there.  Ask me to tell a joke!')` and the Alexa library has all the code to convert that into the elaborate JSON response that Alexa requires.  If you peek at the "JSON Reponse", however, you can see part inside of it that says `<speak>Hi there.  Ask me to tell a joke!</speak>`, which is what that specific code got turned into.
-    1. Note that you your skill can't actually tell a joke yet -- the Lambda function doesn't know how to do it.  For instance, if one of your sample utterances was "make me laugh", try typing `make me laugh` in the "Type or click and hold the mic" box and hit Enter.  (If that wasn't one, put in a different one -- but something other than "tell me a joke").  Alexa should respond with "Sorry, I can't understand the command. Please say again."
+    1. Note that you your skill can't actually tell a joke yet -- the Lambda function doesn't know how to do it.  For instance, if one of your sample utterances was "make me laugh", try typing `make me laugh` in the "Type or click and hold the mic" box and hit Enter.  (If that wasn't one, put in a different one -- but something other than "tell me a joke").  Alexa should respond with "Sorry, I think I missed something.  Can you ask me again?"
         * If you look closely at the "JSON Input" box -- the request that Alexa sent to your skill -- the last block of text near the bottom should be a "request" with "type" set to "IntentRequest".  If Alexa recognized what you said, the intent "name" should be set to "TellMeAJokeIntent".  That means she figured out what you were trying to do, but the request failed because your Lambda just doesn't yet handle it.  If she did not understand your command, the intent "name" is probably set to "FallbackIntent" -- which means, "I heard something but I couldn't find an intent for it"
     1. If you want to try a couple other things that should work, try typing "help" or "stop" into the box and hitting Enter.  Though if you type "stop" and she says "Goodbye", then you'll need to type "open a green clown" again to get her back into your skill if you want to play around more.
-1. If you have an Echo or other Alexa device, invite the Amazon account tied to your device to test the skill.  Otherwise, sign in to the simulator with your Amazon Developer account. (THIS PART NOT WRITTEN YET)
-1. Test the Alexa skill from an Echo, or from the simulator (THIS PART NOT WRITTEN YET)
+1. Do you have an Echo (or other Alexa device) to test with?
+    1. If so, you need to find out what Amazon account it was set up with.
+    1. If it set up with the same Amazon account that you use to sign in to the Alexa Developer console, you should already be able to test the skill!  Try saying `Alexa, open a green clown` and see if she replies that you can ask for a joke.
+    1. Otherwise, if it is the Amazon account of someone you trust (someone in your family, for instance), you can add them as a developer on your Amazon account.  You need to trust them because they can go into the developer console and mess around and break your skill.  But they can also use your skill on their Echo devices.
+       1. To add someone as a developer on your account, click your initials in the top right of any screen in the Alexa developer console (between the magnifying glass icon and the three-dots icon).
+       1. Click `Settings` under your initials
+       1. Click `User Permissions` in the light grey bar near the top
+       1. Click `Add new`
+       1. Enter the e-mail address for their Amazon account in the box under "Email Address" and check `Developer` under "Roles".  Then hit `Save`.
+       1. It will e-mail them an invitation, which they must accept.
+       1. Finally, try saying to their Echo `Alexa, open a green clown` and see if she replies that you can ask for a joke.
+    1. If the e-mail address is different from your Amazon Developer account, but you're not willing to add the person as a developer on your account, then your only option is to start a Beta Test and invite them to participate.  But that is more complicated and won't be covered until later, so you'll have to use the Simulator for now.
+1. If you want to test with the Echo Simulator, and you have working audio on your Mac (microphone and speakers with the volume turned on):
+    1. You must use a browser other than Safari.  Chrome works well.  If you don't have Chrome installed, you can get it from https://www.google.com/chrome/ (you'll need to download, open the DMG file that it downloads, and drag the Chrome icon onto the Applications icon.  You will need someone to put in an Administrator username and password if your macOS account is not an Administrator.)
+    1. Using Chrome, go to http://echosim.io/
+    1. Sign in with the Amazon Developer account that you used at the start of this lesson
+    1. If you are prompted "echosim.io wants to use your microphone" then hit `Allow`
+    1. Hold down the space bar on your computer, and while you're holding it, say `Alexa, open a green clown` and then release the space bar.  Speak toward the microphone on your Mac if needed.  See if Alexa replies "Hi there.  Ask me to tell a joke!"
 
 ## Change the code for the Alexa skill
 
