@@ -12,6 +12,12 @@ Let's start at the top right:
 1. The Amazon cloud tells your Echo device to say "Knock, knock"
 1. The Echo device says "Knock, knock"
 
+As for the purple part of the diagram, you'll learn more about these parts later, but just to introduce them:
+1. You define an Alexa skill in the Amazon Developer Console (this is a Web page).  It is all configuration information there -- the name of the skill, the things you can ask it or tell it to do, etc.
+2. We'll run the code for the skill in AWS Lambda, which we can set up using the AWS Console (another Web page).  Once the code is set up, you can just push your latest code to AWS Lambda and it will run there.
+    * AWS Lambda is just a place to run small chunks of code called Lambda functions.  You provide the code for the Lambda function, and AWS runs that code for you, whenever something calls your Lambda function.  (So there has to be something to call it or else it will never run.)
+3. To make these things work together, you need to point the Alexa skill configuration in the Amazon Developer Console to the Lambda function running in AWS Lambda.  That means that when someone tries to use your skill with Alexa, Alexa will call the Lambda function and AWS Lambda will run it for you to tell Alexa what to say or do.
+
 ## What you need on your Mac to work with this Alexa skill:
 
 **All of these things will be installed as part of the tutorial!**
@@ -20,9 +26,9 @@ Let's start at the top right:
 
 **All of these things will be installed as part of the tutorial!**
 
-1. For starters, we'll use source code control from GitHub.  It will have the "master" copy of your code, which can be shared between people or across several machines.  The set of code for a single project is called a "repository", so GitHub has your repository in the cloud
-1. On your machine, you'll have a local Git repository, with the copy of the code on your machine.
-1. Inside that repository, you'll have your working copy of the code that should run in AWS Lambda.  It will use some code written by other people and made available for your use -- these are called "libraries".  And you'll have a copy of the helper tool called "Gulp" that can do things like send code from your local machine to AWS Lambda to run there.
+1. For starters, we'll use source code control from GitHub.  It will have the "master" copy of your code, which can be shared between people or across several machines.  The set of code for a single project is called a "repository", so GitHub has your repository in the cloud.
+1. On your machine, you'll have a local Git repository, with your working copy of the code.  You can send your code changes from there up to GitHub, and (on a multi-person project) pull other people's changes from GitHub down to your machine.
+1. Inside that repository on your machine, you'll have your working copy of the code that should run in AWS Lambda.  It will use some code written by other people  and made available for your use -- these are called "libraries".  And you'll have a copy of the helper tool called "Gulp" that can do things like send code from your local machine to AWS Lambda to run there.
 1. Elsewhere on your machine, you'll have the Visual Studio Code app, which you use to actually edit the code and configuration files for this skill.
 1. You'll also have some tools needed to work with JavaScript files.  We're using JavaScript for this because it's well-supported, runs fast in AWS Lambda, and is useful to know in a world of Web apps.
     * Node runs JavaScript tools and apps on your machine
