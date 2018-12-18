@@ -22,5 +22,6 @@ simulator if you don't have one*
 ## Start the tutorial!
 
 1. Start by looking at the [Overview of an Alexa skill](OVERVIEW.md)
-1. Next, follow the steps to [Run your first Lambda](tutorial1.md), which includes installing all the tools you need to develop a Lambda, and generating and customizing your code.
-1. Coming soon: **Update the code for the Alexa skill**
+1. Next, follow the steps to [Run your first Lambda](tutorial1.md), which includes installing all the tools you need to develop a Lambda, and generating, customizing, and testing this initial code.  *This will typically take several hours.*
+1. Next, follow the steps to [Build your first Alexa skill](tutorial2.md), which includes configuring the skill, pointing it to your existing Lambda function, and testing it to make sure it's working.  *This will probably take at least an hour.*
+1. Coming soon: **Update the code for the Alexa skill**  In this part of the tutorial we'll talk more about the code in the Alexa skill, what the different parts mean, and how to change it.  We'll do things like provide a list of jokes, and fix up the skill so that Alexa can tell them.
