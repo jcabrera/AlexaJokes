@@ -3,7 +3,7 @@
 * **Time Frame:** We haven't run through this yet, but best guess is an hour or more.
 * **Afterward:** The next step is to learn more about TypeScript and make some code changes to improve the Alexa skill.  This will include changing the code, testing that it's not obviously broken, sending it to AWS Lambda to run, and testing it to make sure it works as intended.
 
-## Set up Alexa
+## Set up your Alexa developer account
 
 1. First, create an Amazon developer account (for reasons unknown, this is separate from your AWS account that we created before):
     1. In your browser, go to http://developer.amazon.com/
@@ -11,7 +11,10 @@
     1. If you already have a regular Amazon account, try signing in with that.  If you have an Echo or other Alexa device, the best idea is to use the Amazon account that already "owns" that device.  But if that's not possible or appropriate, you can use another one.  If you don't have an Amazon account at all, click `Create your Amazon Developer account`
     1. For new accounts, enter your name, e-mail address, and a good password.  For convenience, it may be best to use the same e-mail address you used for your AWS account (including any dots in the name).  It is not required, though.  Then hit `Continue`.
     1. *Since I already have an account, I need to document this when one of you goes through it.*  Complete the rest of the Amazon Developer account setup, and if you're not signed in when that's done, sign in like above
-1. Next, create an Alexa skill:
+
+## Create and configure the Alexa skill
+
+1. Next, create an Alexa skill
     1. Click `Alexa` on the main developer dashboard screen
     1. Mouse over `Your Alexa Consoles` on the top right, then click `Skills`
     1. Click `Create Skill`
@@ -45,6 +48,11 @@
 1. Check your skill configuration:
     1. Click `Invocation` on the left side
     1. Click `Build Model` along the top.  It will tell you the build has started, then take a bit of time (perhaps a minute), then hopefully tell you "Build Successful"
+
+## Test the Alexa skill in the developer console, and on an Echo or the Echo Simulator
+
+There are three ways to test the Alexa skill.  The quickest is in the Alexa developer console, but that's not really exactly how an Echo works, so it's great for looking into problems, but it can't convince you that the skill will really work 100% on an actual Echo device.  So once your skill works when tested in the console, it's best to also try one of the other two moethds -- to test either on a real device or with the Echo Simulator (which works just like a real device).
+
 1. Test the Alexa skill from the Alexa console:
     1. Click `Test` in the black bar at the top
     1. Where it says "Test is disabled for this skill" click `Off` and select `Development`
@@ -52,10 +60,11 @@
     1. In that last box, type `open a green clown` and hit Enter.  Remember, "a green clown" is what we set as the words that mean Alexa should use your skill -- so this is basically saying "start up your skill"
     1. If you have audio on your computer (speakers or headphones, with the volume on), you should hear Alexa say "Hi there.  Ask me to tell a joke".  If not, don't worry, you can still see the response.
     1. On the right side of the screen, you should see a blue bar that says `Hi there.  Ask me to tell a joke!`  That's from your Lambda function!  Below that, there are large text areas with "JSON Input" and "JSON Output" for this request.  Those are the message Alexa sent to your Lambda, and the response your Lambda sent back.
-        * This is a great example of the power of using other people's libraries in your code.  Your Lambda function does not have any code to create all that text in the response.  It only has entries like `speak('Hi there.  Ask me to tell a joke!')` and the Alexa library has all the code to convert that into the elaborate JSON response that Alexa requires.  If you peek at the "JSON Reponse", however, you can see part inside of it that says `<speak>Hi there.  Ask me to tell a joke!</speak>`, which is what that specific code got turned into.
+        * Note that the request/response pattern is common in building programs like this.  Alexa sends a request to the Lambda, which reads the request and decides what it should do.  Then it does what it needs to and sends a response back to Alexa.  It is actually very convenient to be able to see the request and response side by side.  Even if you don't understand the whole message there, you can look into it for specific parts, as we will see in a moment.
+        * This is a great example of the power of using other people's libraries in your code.  Your Lambda function does not have any code to create all that text in the response.  It only has entries like `speak('Hi there.  Ask me to tell a joke!')` and the Alexa library has all the code to convert that into the elaborate response that Alexa requires.  If you peek at the "JSON Reponse", however, you can see part inside of it that says `<speak>Hi there.  Ask me to tell a joke!</speak>`, which is what that specific code got turned into.
     1. Note that you your skill can't actually tell a joke yet -- the Lambda function doesn't know how to do it.  For instance, if one of your sample utterances was "make me laugh", try typing `make me laugh` in the "Type or click and hold the mic" box and hit Enter.  (If that wasn't one, put in a different one -- but something other than "tell me a joke").  Alexa should respond with "Sorry, I think I missed something.  Can you ask me again?"
-        * If you look closely at the "JSON Input" box -- the request that Alexa sent to your skill -- the last block of text near the bottom should be a "request" with "type" set to "IntentRequest".  If Alexa recognized what you said, the intent "name" should be set to "TellMeAJokeIntent".  That means she figured out what you were trying to do, but the request failed because your Lambda just doesn't yet handle it.  If she did not understand your command, the intent "name" is probably set to "FallbackIntent" -- which means, "I heard something but I couldn't find an intent for it"
-    1. If you want to try a couple other things that should work, try typing "help" or "stop" into the box and hitting Enter.  Though if you type "stop" and she says "Goodbye", then you'll need to type "open a green clown" again to get her back into your skill if you want to play around more.
+        * If you look closely at the "JSON Input" box -- the request that Alexa sent to your skill -- the last block of text near the bottom should be a "request" with "type" set to `IntentRequest`.  If Alexa recognized what you said, the intent "name" should be set to `TellMeAJokeIntent`.  That means she figured out what you were trying to do, but the request failed because your Lambda just doesn't yet handle it.  If she did not understand your command, the intent "name" is probably set to `FallbackIntent` -- which means, "I heard something but I couldn't find an intent for it"
+    1. If you want to try a couple other things that should work, try typing "help" or "stop" into the box and hitting Enter.  Though if you type "stop" and she says "Goodbye", then you'll need to type "open a green clown" again to get her back into your skill so you can play around more.
 1. Do you have an Echo (or other Alexa device) to test with?
     1. If so, you need to find out what Amazon account it was set up with.
     1. If it set up with the same Amazon account that you use to sign in to the Alexa Developer console, you should already be able to test the skill!  Try saying `Alexa, open a green clown` and see if she replies that you can ask for a joke.
