@@ -3,7 +3,7 @@
 * **Time Frame:** This part of the tutorial typically takes several hours.  There is a lot of first-time setup!
 * **Afterward:** The next step is to set up the Alexa side of things to call your Lambda, then test your skill from Alexa.
 
-## Local Machine Setup
+## Part 1 of 4: Local Machine Setup
 1. To run Terminal, which you'll need for many of the rest of these commands:
     1. Hit Command-Space and start typing `Terminal` and click `Terminal` when you see it in the list (or you can hit Enter if it's the first entry)
     1. When it opens a Terminal window, you can type `echo "Hello"` and then Enter to make sure it's working
@@ -43,7 +43,7 @@
         * This may take some time, especially if you're on an older version of macOS
     1. Run `aws` from Terminal and make sure it doesn't complain that the command wasn't found
 
-## AWS Account Setup
+## Part 2 of 4: AWS Account Setup
 1. Google for `AWS Console` and go there
 1. Click `Create a free account`
 1. Complete the account setup.  You will need an **e-mail address**, **credit card**, and working **cell phone** to receive a call
@@ -76,7 +76,7 @@
     1. Click `Next: Tags` then `Next: Review`
     1. Enter `AlexaLambda` for the Role Name and then hit `Create role`
 
-## Project Setup
+## Part 3 of 4: Project Setup
 1. Make your own copy of the starter code:
     * I would like you to be able to save your changes to the cloud so they can't be lost.  Also, sending code back and forth to GitHub is a part of programming you should get used to.  However, there are a number of people using this tutorial.  If you all saved your changes back to MY ORIGINAL repository (a "repository" is the place that holds code for a project), it would quickly get to be a mess.  Instead, I'll have you copy it to a repository of your own, and work with that!  This is called making a "fork" of the original.
     1. In your browser, go to GitHub.com and sign in if you haven't already.
@@ -125,7 +125,7 @@
     1. To double-check that your changes went through, look at the GitHub repository in your Web browser.  If it's still open, great.  Otherwise go to GitHub.com and sign in if needed and then click the `AlexaJokes` repository in your repository list.
     1. Once you have your repository open in the browser, click the `lambda` directory in the file listing, and you should see your five new files there.
 
-## Customize and run your first Lambda in AWS
+## Part 4 of 4: Customize and run your first Lambda in AWS
 1. Go to Visual Studio Code (or open it if it's not running)
 1. Open the project:
     1. Hit `Open folder...` in blue text
