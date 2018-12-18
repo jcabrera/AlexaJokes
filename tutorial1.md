@@ -176,7 +176,7 @@
     1. Under "Event name" enter `AlexaStart` or `AlexaStartSession` (it doesn't allow spaces)
     1. Hit `Create`
     1. Hit the `Test` button near the top right
-    1. Click `Details` in the green box.  You should see output including `<speak>Hi there.  Ask me to tell a joke!\</speak>`  That shows that the Lambda itself is working, though it's not yet connected to Alexa.
+    1. Click `Details` in the green box.  You should see output including `<speak>Hi there.  Ask me to tell a joke!</speak>`  That shows that the Lambda itself is working, though it's not yet connected to Alexa.
 
 ## Set up Alexa 
 
